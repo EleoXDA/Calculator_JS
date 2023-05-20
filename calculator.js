@@ -59,3 +59,29 @@ function calculate() {
     result.value = "Error";
   }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+  var themeSelector = document.getElementById('theme-selector');
+  
+  themeSelector.addEventListener('change', function() {
+    var calculators = document.getElementsByClassName('calculator'); // Get all elements with the 'calculator' class
+    var buttons = document.getElementsByTagName('button'); // Get all button elements
+
+    // Remove the existing theme class from the body, calculators, and buttons
+    document.body.classList.remove('theme-default', 'theme-dark', 'theme-light');
+    for (var i = 0; i < calculators.length; i++) {
+        calculators[i].classList.remove('theme-default', 'theme-dark', 'theme-light');
+    }
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('theme-default', 'theme-dark', 'theme-light');
+    }
+
+    // Add the selected theme class to the body, calculators, and buttons
+    document.body.classList.add(this.value);
+    for (var i = 0; i < calculators.length; i++) {
+        calculators[i].classList.add(this.value);
+    }
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.add(this.value);
+    }
+  });
