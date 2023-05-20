@@ -84,4 +84,36 @@ document.addEventListener('DOMContentLoaded', function() {
     for (var i = 0; i < buttons.length; i++) {
         buttons[i].classList.add(this.value);
     }
+
+    // Save the selected theme in local storage
+    localStorage.setItem('selectedTheme', this.value);
   });
+
+  // Load the saved theme from local storage (if any)
+  var savedTheme = localStorage.getItem('selectedTheme');
+  if (savedTheme) {
+    var calculators = document.getElementsByClassName('calculator'); // Get all elements with the 'calculator' class
+    var buttons = document.getElementsByTagName('button'); // Get all button elements
+
+    // Remove the existing theme class from the body, calculators, and buttons
+    document.body.classList.remove('theme-default', 'theme-dark', 'theme-light');
+    for (var i = 0; i < calculators.length; i++) {
+        calculators[i].classList.remove('theme-default', 'theme-dark', 'theme-light');
+    }
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.remove('theme-default', 'theme-dark', 'theme-light');
+    }
+
+    // Add the saved theme class to the body, calculators, and buttons
+    document.body.classList.add(savedTheme);
+    for (var i = 0; i < calculators.length; i++) {
+        calculators[i].classList.add(savedTheme);
+    }
+    for (var i = 0; i < buttons.length; i++) {
+        buttons[i].classList.add(savedTheme);
+    }
+
+    // Set the dropdown menu's value to the saved theme
+    themeSelector.value = savedTheme;
+  }
+});
